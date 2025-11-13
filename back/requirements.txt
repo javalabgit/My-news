@@ -1,11 +1,10 @@
-
 fastapi
 uvicorn[standard]
-
 jinja2
 python-multipart
 PyJWT==2.10.1
-
 requests
 python-dotenv
 pydantic
+feedparser
+cachetools

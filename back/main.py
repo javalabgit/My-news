@@ -46,7 +46,9 @@ RSS_FEEDS = {
     "national": "https://www.thehindu.com/news/national/feeder/default.rss",
     "andhra": "https://www.thehindu.com/news/national/andhra-pradesh/feeder/default.rss",
     "finance": "https://www.moneycontrol.com/rss/latestnews.xml",
-    "politics": "https://www.livemint.com/rss/politicsRSS",
+    "politics": "https://www.indianewsnetwork.com/rss.en.politics.xml",
+    "p1":"https://www.nationalheraldindia.com/stories.rss?section=politics",
+
     "cinema": "https://timesofindia.indiatimes.com/rssfeeds/1081479906.cms",
     "sports": "https://www.espn.com/espn/rss/news",
 
@@ -60,6 +62,26 @@ RSS_FEEDS = {
     "bbc_top_stories": "https://feeds.bbci.co.uk/news/rss.xml",
     "aljazeera_top": "https://www.aljazeera.com/xml/rss/all.xml"
 }
+
+
+CATEGORY_MAP = {
+    "education": [
+        "ap_education_src1", "ap_education_src2",
+        "national_education_hindustan_times", "national_education_timesofindia",
+        # "international_education_bbc", "international_education_aljazeera"
+    ],
+    "national": [
+        "national", "national_education_hindustan_times", "national_education_timesofindia"
+    ],
+    "regional": ["andhra", "telugu_eenadu", "telugu_sakshi", "telugu_andhrajyothy"],
+    "finance": ["finance"],
+    "politics": ["politics","p1"],
+    "cinema": ["cinema"],
+    "sports": ["sports"],
+    "international": [ "aljazeera_top","bbc_world", "bbc_top_stories"]
+}
+
+
 
 
 # === Cache: feed url -> parsed items; TTL in seconds ===
@@ -125,6 +147,7 @@ def fetch_feed_items(url: str) -> List[Dict[str, Any]]:
 def list_categories():
     return {"categories": list(RSS_FEEDS.keys())}
 
+
 @app.get("/news/{category}", summary="Get feed items for a category")
 def get_news(
     category: str,
@@ -132,23 +155,37 @@ def get_news(
     per_page: int = Query(20, ge=1, le=100),
 ):
     category = category.lower()
-    if category not in RSS_FEEDS:
+
+    # Check if the category exists in CATEGORY_MAP
+    if category not in CATEGORY_MAP:
         raise HTTPException(status_code=404, detail="Unknown category")
 
-    url = RSS_FEEDS[category]
-    try:
-        items = fetch_feed_items(url)
-    except Exception as exc:
-        raise HTTPException(status_code=502, detail=str(exc))
+    # Collect feed URLs for this category
+    feed_keys = CATEGORY_MAP[category]
+    all_items = []
+
+    for key in feed_keys:
+        url = RSS_FEEDS.get(key)
+        if not url:
+            continue
+        try:
+            items = fetch_feed_items(url)
+            all_items.extend(items)
+        except Exception as exc:
+            # Skip feeds that fail
+            print(f"Failed to fetch {url}: {exc}")
+
+    # Optional: sort by published date if your items have a 'published' field
+    all_items.sort(key=lambda x: x.get("published", ""), reverse=True)
 
     # Pagination
     start = (page - 1) * per_page
     end = start + per_page
-    paged = items[start:end]
+    paged = all_items[start:end]
 
     return {
         "category": category,
-        "total": len(items),
+        "total": len(all_items),
         "page": page,
         "per_page": per_page,
         "items": paged,

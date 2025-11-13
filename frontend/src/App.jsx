@@ -9,7 +9,9 @@ dayjs.extend(relativeTime);
 const API_BASE = import.meta.env.VITE_API_BASE || "https://impact-news-x.onrender.com";
 
 const CATEGORIES = [
+   { id: "education", name: "Education", icon: "🏫" },
   { id: "national", name: "National", icon: "🏛️" },
+   { id: "aljazeera_top", name: "InterNational", icon: "🌍" },
   { id: "andhra", name: "Andhra Pradesh", icon: "📍" },
   { id: "finance", name: "Finance", icon: "💰" },
   { id: "politics", name: "Politics", icon: "⚖️" },

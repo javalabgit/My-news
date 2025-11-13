@@ -20,14 +20,47 @@ app.add_middleware(
 )
 
 # === Config: categories and feed URLs ===
+# RSS_FEEDS = {
+#     "national": "https://www.thehindu.com/news/national/feeder/default.rss",
+#     "andhra": "https://www.thehindu.com/news/national/andhra-pradesh/feeder/default.rss",
+#     "finance": "https://www.moneycontrol.com/rss/latestnews.xml",
+#     "politics": "https://www.livemint.com/rss/politicsRSS",
+#     "cinema": "https://timesofindia.indiatimes.com/rssfeeds/1081479906.cms",
+#     "sports": "https://www.espn.com/espn/rss/news"
+# }
+
+
 RSS_FEEDS = {
+
+     "ap_education_src1": "https://www.eenadu.net/rss/education",
+    "ap_education_src2": "https://cdn.sakshi.com/rss/education.xml",
+
+    # National India
+    "national_education_hindustan_times": "https://www.hindustantimes.com/education/rssfeed.xml",
+    "national_education_timesofindia": "https://timesofindia.indiatimes.com/rssfeeds/913168846.cms",
+
+    # International Education
+    "international_education_bbc": "https://feeds.bbci.co.uk/news/education/rss.xml",
+    "international_education_aljazeera": "https://www.aljazeera.com/xml/rss/education.xml",
+    # 🇮🇳 National & Regional News
     "national": "https://www.thehindu.com/news/national/feeder/default.rss",
     "andhra": "https://www.thehindu.com/news/national/andhra-pradesh/feeder/default.rss",
     "finance": "https://www.moneycontrol.com/rss/latestnews.xml",
     "politics": "https://www.livemint.com/rss/politicsRSS",
     "cinema": "https://timesofindia.indiatimes.com/rssfeeds/1081479906.cms",
-    "sports": "https://www.espn.com/espn/rss/news"
+    "sports": "https://www.espn.com/espn/rss/news",
+
+    # 🗞️ Telugu News Sources
+    "telugu_eenadu": "https://www.eenadu.net/rss/home",
+    "telugu_sakshi": "https://cdn.sakshi.com/rss/sakshi-telangana.xml",
+    "telugu_andhrajyothy": "https://www.andhrajyothy.com/rss/latest.xml",
+
+    # 🌍 International News
+    "bbc_world": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "bbc_top_stories": "https://feeds.bbci.co.uk/news/rss.xml",
+    "aljazeera_top": "https://www.aljazeera.com/xml/rss/all.xml"
 }
+
 
 # === Cache: feed url -> parsed items; TTL in seconds ===
 FEED_CACHE_TTL = 120  # seconds

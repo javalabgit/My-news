@@ -6,7 +6,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://impact-news-x.onrender.com";
 
 const CATEGORIES = [
    { id: "education", name: "Education", icon: "🏫" },

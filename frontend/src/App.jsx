@@ -6,13 +6,13 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://impact-news-x.onrender.com";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
 const CATEGORIES = [
    { id: "education", name: "Education", icon: "🏫" },
   { id: "national", name: "National", icon: "🏛️" },
-   { id: "aljazeera_top", name: "InterNational", icon: "🌍" },
-  { id: "andhra", name: "Andhra Pradesh", icon: "📍" },
+   { id: "international", name: "InterNational", icon: "🌍" },
+  { id: "regional", name: "Andhra Pradesh", icon: "📍" },
   { id: "finance", name: "Finance", icon: "💰" },
   { id: "politics", name: "Politics", icon: "⚖️" },
   { id: "cinema", name: "Cinema", icon: "🎬" },
@@ -71,12 +71,11 @@ function NewsCard({ item }) {
     (item.summary && item.summary.replace(/<[^>]+>/g, "")) || "";
 
   return (
-    <a
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-brand-400"
-    >
+  <a
+  href={item.link}  // opens in the same page
+  className="group block bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-brand-400"
+>
+
       <div className="relative h-56 bg-gradient-to-br from-brand-50 to-brand-100 overflow-hidden">
         {item.thumbnail ? (
           <img

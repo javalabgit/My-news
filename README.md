@@ -13,10 +13,26 @@ The goal of NewsOS is to process unstructured news data and turn it into strateg
 
 * **⚡ High-Speed RSS Aggregation:** A FastAPI-driven backend that concurrently fetches and normalizes feeds from top-tier sources (The Hindu, BBC, Al Jazeera, Moneycontrol, etc.).
 * **🗂️ Smart Categorization:** Pre-configured categories mapping specific regional, national, and international feeds into digestible streams (Education, Finance, Politics, Cinema, Sports).
-* ![Alt text](images/screenshot.png)
+* ![Alt text](images/edu.png)
+
+
+
+![Alt text](images/cinef.png)
 
 * **🧠 Intelligent Caching:** Implements `cachetools` with a Time-To-Live (TTL) strategy to prevent rate-limiting from source servers while serving fresh news instantly.
+
+
+![Alt text](images/alertsplan.png)
+
+
+
 * **🎨 Responsive React UI:** A polished, Vite-powered frontend utilizing Tailwind CSS for a modern, scannable, and interactive card-based layout.
+
+
+
+![Alt text](images/edu.png)
+
+
 * **📈 Built-in Pagination & Skeleton Loading:** Ensures smooth user experience even when fetching massive amounts of data or dealing with slow network constraints.
 
 ## 🛠️ Tech Stack

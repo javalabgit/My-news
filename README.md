@@ -22,7 +22,12 @@ The goal of NewsOS is to process unstructured news data and turn it into strateg
 * **🧠 Intelligent Caching:** Implements `cachetools` with a Time-To-Live (TTL) strategy to prevent rate-limiting from source servers while serving fresh news instantly.
 
 
-![Alt text](images/alertsplan.png)
+![Alt text](images/opportunities.png)
+
+# the alerting suggestion and route of action 
+
+
+![Alt text](images/alerts&plans.png)
 
 
 
